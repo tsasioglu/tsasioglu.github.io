@@ -1,0 +1,93 @@
+html {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+/*    height: 100%;*/
+    background-color: #f3f4ef; 
+}
+
+    
+#banner {
+    width: 100%;
+    background-color: orange;
+    color: white;
+}
+
+header {
+    margin: 0 auto;    
+    width: 50%;
+    font-size: 50px; 
+}
+
+nav {
+    margin: 0 auto;
+    width: 50%;
+    height: 20px;
+}
+
+aside {
+    right: 10px; 
+    padding-top: 10px;
+    position: fixed;
+}
+
+#linkedIn {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: -3px;
+    padding-top: 2px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;    
+}
+
+ul.navItems li {
+    float: left;
+    margin-right: 10px
+}
+
+body {    
+    margin: 0 auto;   
+    height: 100%;
+}
+
+#content {
+    background-color: #f3f4ef; 
+    width: 100%;
+    padding: 20px;
+}
+
+article {
+     max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+img.project {
+    float:left;
+    width: 400px;
+    margin-right: 10px
+}
+
+li.project {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px
+}
+
+.projectInfo {
+    margin-top: -20px;
+    padding-right: 20px;
+}
+
+.projectLinks {
+/*    position: absolute;   */
+    bottom: 0px;
+    right: 100px;
+}
+
+ul.projects li {
+    
+}
