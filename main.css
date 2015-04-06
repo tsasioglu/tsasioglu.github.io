@@ -7,7 +7,7 @@ html {
     
 #banner {
     width: 100%;
-    background-color: rgb(65,177,225);
+    background-color: #41b1e1;
     color: white;
 }
 
@@ -40,15 +40,6 @@ aside {
     height: 32px;
     margin-bottom: 5px;
 }
-
-/*
-#linkedIn {
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    right: -3px;
-}
-*/
 
 ul {
     list-style-type: none;
@@ -91,11 +82,9 @@ article {
 
 .projectInfo {
     margin-top: -20px;
-    padding-right: 20px;
+    padding-right: 20px;        
 }
 
 .projectLinks {
-    bottom: 0px;
-    right: 100px;
 }
 
