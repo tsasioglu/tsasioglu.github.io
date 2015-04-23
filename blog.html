@@ -60,9 +60,8 @@
                 <h2>3 Step Setup</h2>
                 <ol class="list-unstyled">
                     <section class="padded">
-                    <h4><li>1. Install using NuGet </li></h4><br />
+                    <h4><li>1. Install using NuGet </li></h4>
                     <h4><li>2. Add the following to your App.config inside the <code class="xml">&lt;configuration&gt;</code> element</li></h4>
-                    <br />
 <pre><code class="xml">&lt;configSections&gt;
     &lt;section name=&quot;nlog&quot; type=&quot;NLog.Config.ConfigSectionHandler, NLog&quot;/&gt;
 &lt;/configSections&gt;
@@ -123,6 +122,16 @@
                         <section class="padded">
                         <h3>Specify minimum logging level of warning</h3>
                         <pre><code class="xml">&lt;logger name="log" writeTo="log" minlevel="Warning"/&gt;</code></pre>
+                        </section>
+                    </li>
+                     <li>
+                        <section class="padded">
+                        <h3>Class specific config</h3>
+                        <pre><code class="xml">&lt;!-- Log messages from Class1 to the target named log1 --&gt;<br />&lt;logger name="Name.Space.Class1" writeTo="log1" /&gt;<br />
+&lt;!-- Log messages from any class in the Name.Space2 namespace to the target named log2 --&gt;<br />&lt;logger name="Name.Space2.*" writeTo=”log2" /&gt;
+                        <br /></code></pre>
+                            <pre><code class="cs">Logger _logger = LogManager.GetCurrentClassLogger();</code></pre>
+
                         </section>
                     </li>
                      <li>
