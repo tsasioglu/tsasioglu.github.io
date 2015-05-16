@@ -175,7 +175,7 @@
 
 var target      = new FileTarget();
 target.Name     = "log";
-target.FileName = @"${specialfolder:folder=ApplicationData}/TotalUninstaller/log_${cached:${longdate}:cached=true}.txt";
+target.FileName = @"${specialfolder:folder=ApplicationData}/YourAppName/log_${cached:${longdate}:cached=true}.txt";
 target.Layout   = @"${longdate} ${message} ${exception:format=tostring}";
 config.AddTarget("log", target);
 
