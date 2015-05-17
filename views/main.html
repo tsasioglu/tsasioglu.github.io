@@ -1,15 +1,9 @@
-<!-- <div >
-  <span class="col-lg-2" ng-repeat="tag in uniqueTags(posts)">
-       <input type="checkbox" ng-model="search[tag]" checked="checked" /> {{tag}}
-  </span>
-</div>
- -->
  <div class="col-lg-6">
   <span class="search-tags">Type</span>
   <input type="checkbox" ng-model="search.full" /> 
-  <span class="label label-success search-tags">full</span>
+  <span class="label label-success search-tags" data-toggle="tooltip" tooltip-placement="top" tooltip="Full blown blog post">full</span>
   <input type="checkbox" ng-model="search.mini" /> 
-  <span class="label label-warning search-tags">mini</span>
+  <span class="label label-warning search-tags" data-toggle="tooltip" tooltip-placement="top" tooltip="Aide-memoire style postette">mini</span>
 </div>
 
 <div class="col-lg-6">

@@ -83,6 +83,6 @@ angular.module("blogFeedApp")
 			$scope.search[tag] = true;
 		});
   		return _.uniq(flatTags);
-  	}
-    
+  	};
+   
   }]);

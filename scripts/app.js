@@ -10,7 +10,7 @@
  * Main module of the application.
  */
 angular
-  .module("blogFeedApp", [])
+  .module("blogFeedApp", ["ui.bootstrap"])
   .run(function($rootScope){
     $rootScope._ = _;
 });
