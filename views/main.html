@@ -1,0 +1,43 @@
+<!-- <div >
+  <span class="col-lg-2" ng-repeat="tag in uniqueTags(posts)">
+       <input type="checkbox" ng-model="search[tag]" checked="checked" /> {{tag}}
+  </span>
+</div>
+ -->
+ <div class="col-lg-6">
+  <span class="search-tags">Type</span>
+  <input type="checkbox" ng-model="search.full" /> 
+  <span class="label label-success search-tags">full</span>
+  <input type="checkbox" ng-model="search.mini" /> 
+  <span class="label label-warning search-tags">mini</span>
+</div>
+
+<div class="col-lg-6">
+  <span class="search-tags">Category</span>
+  <input type="checkbox" ng-model="search.dev" /> 
+  <span class="label label-primary search-tags">dev</span>
+  <input type="checkbox" ng-model="search.finance" /> 
+  <span class="label label-info search-tags">finance</span>
+</div>
+
+
+<div class="blog-post col-lg-12" ng-repeat="post in posts | orderBy:'-pubDate' | filter:searchFilter() ">
+  <h2>{{post.title}}</h2>
+  <p class="blog-post-meta">{{post.pubDate | date:"fullDate"}}</p>
+  <p>{{post.summary}}</p>
+  <p>
+    <span class="label label-primary tags" ng-show="_.contains(post.tags, 'dev')">dev</span>
+    <span class="label label-info tags"    ng-show="_.contains(post.tags, 'finance')">finance</span>
+    <span class="label label-warning tags" ng-show="_.contains(post.tags, 'mini')">mini</span>
+    <span class="label label-success tags" ng-show="_.contains(post.tags, 'full')">full</span>
+
+    <a class="btn btn-primary pull-right" ng-href="{{post.link}}" role="button">View full post</a>
+  </p>
+</div>
+
+<div class="col-lg-12 want-more">
+  <span class="search-tags">Want more?</span>
+  <a class="label label-primary search-tags" href="https://thingsishouldknowasadeveloper.wordpress.com/">dev</a>
+  <a class="label label-info search-tags"    href="https://thingsishouldknowasafinanceworker.wordpress.com/">finance</a>
+  <a class="label label-success search-tags" href="http://sasioglu.co.uk/blog.html">full</a>
+</div>

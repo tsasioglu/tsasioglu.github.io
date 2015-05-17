@@ -56,11 +56,19 @@ ul.navItems li {
 body {    
     margin: 0 auto;   
     height: 100%;
+    background-color: #f3f4ef; 
 }
 
 #content {
     background-color: #f3f4ef; 
     padding: 3px;
+}
+
+
+#blogContent {
+    background-color: #f3f4ef; 
+    padding: 3px;
+    margin-top: 20px;
 }
 
 article {
@@ -93,3 +101,24 @@ article {
     padding: 10px;   
 }
 
+.blog-post {
+  border-bottom: 1px solid #EAE9E4;
+  padding-bottom: 5px;
+}
+
+.blog-post-meta {
+  color: #999;
+}
+
+.tags {
+  vertical-align: bottom;
+}
+
+.search-tags {
+  vertical-align: super;
+  margin-right: 10px;
+}
+
+.want-more {
+  margin: 5px;
+}

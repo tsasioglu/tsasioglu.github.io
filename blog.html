@@ -1,22 +1,19 @@
-<!DOCTYPE html>
-<html>
-    
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <title>sasioglu.co.uk</title>
-        <meta name="description" content="sasioglu.co.uk">
-        <link rel="stylesheet" href="main.css">       
-        <link rel="stylesheet" href="component.css">
-    </head>    
-    <body>
-        <div id="banner">
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <title>sasioglu.co.uk</title>
+    <meta name="description" content="sasioglu.co.uk">
+    <link rel="stylesheet" href="main.css">       
+    <link rel="stylesheet" href="component.css">
+  </head>
+  
+      <div id="banner">
             <header>Sasioglu.co.uk</header>
             <div class="navItems">
                 <nav class="cl-effect-1">                
@@ -48,148 +45,33 @@
                 </a>
             </div>
         </aside>  
-        
-        <div id="content"> 
-            <article>
-                <h1>NLog (really) quick start</h1>
-                
-                <h2>Why NLog?</h2>
-                <section class="padded">
-                It’s powerful, actively developed, has decent documentation, a wide user base and supports Silverlight and Windows Phone. It might take an extra 5 minutes setting up the base config, but it’s worth it.</section>
-                
-                <h2>3 Step Setup</h2>
-                <ol class="list-unstyled">
-                    <section class="padded">
-                    <h4><li>1. Install using NuGet </li></h4>
-                    <h4><li>2. Add the following to your App.config inside the <code class="xml">&lt;configuration&gt;</code> element</li></h4>
-<pre><code class="xml">&lt;configSections&gt;
-    &lt;section name=&quot;nlog&quot; type=&quot;NLog.Config.ConfigSectionHandler, NLog&quot;/&gt;
-&lt;/configSections&gt;
+  
+  <body ng-app="blogFeedApp">
+   
+     <article>
+        <div class="container" id="blogContent">
+            <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+        </div>
+    </article>
 
-&lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
-    &lt;targets&gt;
-        &lt;target name=&quot;log&quot; xsi:type=&quot;File&quot; fileName=&quot;C:/Temp/log.txt&quot;/&gt;
-    &lt;/targets&gt;
-    &lt;rules&gt;
-        &lt;logger name=&quot;log&quot; writeTo=&quot;log&quot;/&gt;
-    &lt;/rules&gt;
-&lt;/nlog&gt;</code></pre>
+  
 
 
-<br />
-                    
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">Exception: "Only one &lt;configSections&gt; element allowed per config file and if present must be the first child of the root"</div>
-                        <div class="panel-body">
-                            If you get this exception, make sure the <code class="xml">&lt;configsection&gt;</code> is at the top of the file, just under <code class="xml">&lt;configuration&gt;</code>.
-                        </div>
-                    </div>
+   
 
-                    This config is set up to create a log file at <code class="xml">C:/Temp/log.txt</code>, and append to it. As this just creates one ever expanding file, it’s only really useful for debugging. See instructions below on configuring NLog to create a new timestamped log file on each application launch.
-                    <br /><br />
-                    <li><h4>3. Now all you have to do is get the Logger object and log from it</h4>
-                    <pre><code class="cs">Logger _logger = LogManager.GetLogger("log");<br /><br />_logger.Error("Foo");<br />_logger.Info("Bar");<br />//etc...</code></pre><br />
-                    
-</li>
-                </ol>        
-                    </section>
-                    
-                
-                
-                <h2>Optional Config</h3>
-                <ol class="list-unstyled">
-                    <li>
-                        <section class="padded">
-                        <h3>Fresh log file per application launch, named by creation timestamp</h3>
-                        <pre><code class="xml">&lt;target name="log" xsi:type="File" fileName="C:/Temp/log_${cached:${longdate}:cached=true}.txt"/&gt;</code></pre>
-                        </section>
-                    </li>
-                    <li>
-                        <section class="padded">
-                        <h3>Exception support with stacktrace (also note the bonus <code class="xml">${longdate}</code> to get timestamped log lines)</h3>
-                        <pre><code class="xml">&lt;target name="log" xsi:type="File" fileName="C:/Temp/log.txt" layout="${longdate} ${message} ${exception:format=tostring}"/&gt;</code></pre>
-                        
-                        <pre><code class="cs">Exception e = …<br />_logger.Error("Uh oh: ", e);</code></pre>
-                        </section>
-                    </li>
-                    <li>
-                        <section class="padded">
-                        <h3>Log to <code class="cs">%AppData%/YourAppName</code> (no need to create this beforehand)</h3>
-                        <pre><code class="xml">&lt;target name="log" xsi:type="File" fileName="${specialfolder:folder=ApplicationData}/YourAppName/log.txt"/&gt;</code></pre>
-                        </section>
-                    </li>
-                    <li>
-                        <section class="padded">
-                        <h3>Specify minimum logging level of warning</h3>
-                        <pre><code class="xml">&lt;logger name="log" writeTo="log" minlevel="Warning"/&gt;</code></pre>
-                        </section>
-                    </li>
-                     <li>
-                        <section class="padded">
-                        <h3>Class specific config</h3>
-                        <pre><code class="xml">&lt;!-- Log messages from Class1 to the target named log1 --&gt;<br />&lt;logger name="Name.Space.Class1" writeTo="log1" /&gt;<br />
-&lt;!-- Log messages from any class in the Name.Space2 namespace to the target named log2 --&gt;<br />&lt;logger name="Name.Space2.*" writeTo=”log2" /&gt;
-                        <br /></code></pre>
-                            <pre><code class="cs">Logger _logger = LogManager.GetCurrentClassLogger();</code></pre>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
 
-                        </section>
-                    </li>
-                     <li>
-                        <section class="padded">
-                        <h3>Enable Visual Studio intellisense</h3>
-                        Download <code class="xml"><a href="http://www.nlog-project.org/schemas/NLog.xsd">http://www.nlog-project.org/schemas/NLog.xsd</a></code> somewhere (<code class="xml">C:\Program Files (x86)\Microsoft Visual Studio 12.0\Xml\Schemas</code> is a good place). Go to App.config properties -> Schemas -> Add NLog.xsd.
-                        </section>
-                    </li>
-                </ol>
-                <br />
-                
-                
-                
-                
-                
-                
-                
-                    <h2>Putting it all together</h2>
-                    <section class="padded">
-<pre><code class="xml">&lt;configuration&gt; 
-    &lt;configSections&gt;
-        &lt;section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog"/&gt;
-    &lt;/configSections&gt;
-    
-    &lt;nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-        &lt;targets&gt;
-            &lt;target name="log" xsi:type="File"
-                    fileName="${specialfolder:folder=ApplicationData}/YourAppName/log_${cached:${longdate}:cached=true}.txt" 
-                    layout="${longdate} ${message} ${exception:format=tostring}"/&gt;
-        &lt;/targets&gt;
-        &lt;rules&gt;
-            &lt;logger name="log" writeTo="log" minlevel="Warning"/&gt;
-        &lt;/rules&gt;
-    &lt;/nlog&gt;
-&lt;/configuration&gt;</code></pre>
-                </section>
-                
-                  <h2>Dependency bundling</h2>
-                  If you're using a dependency bundler such as <a href="https://github.com/Fody/Costura">Fody/Costura</a> you'll need to define the config programatically on startup:<br /><br />
-                <pre><code class="cs">var config = new LoggingConfiguration();
-
-var target      = new FileTarget();
-target.Name     = "log";
-target.FileName = @"${specialfolder:folder=ApplicationData}/YourAppName/log_${cached:${longdate}:cached=true}.txt";
-target.Layout   = @"${longdate} ${message} ${exception:format=tostring}";
-config.AddTarget("log", target);
-
-var rule = new LoggingRule("*", LogLevel.Trace, target);
-config.LoggingRules.Add(rule);
-
-LogManager.Configuration = config;</code></pre>
-                <br />
-                <h3>More @ <a href="https://github.com/nlog/NLog/wiki/Configuration-file">Github docs</a></h3>
-                <br /><br />
-            </article>
-        </div>      
-        
-              
-        
-    </body>    
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/XmlService.js"></script>        
+        <script src="scripts/controllers/main.js"></script>
+        <!-- endbuild -->
+</body>
 </html>
