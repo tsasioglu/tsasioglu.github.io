@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+       <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="scripts/ui-bootstrap-custom-tpls-0.13.0.min.js"></script>
+   
+        <script>hljs.initHighlightingOnLoad();</script>
+        <title>sasioglu.co.uk</title>
+        <meta name="description" content="sasioglu.co.uk">
+        <link rel="stylesheet" href="main.css">       
+        <link rel="stylesheet" href="component.css">
+    </head>    
+    <body>
+        <div id="banner">
+            <header>Sasioglu.co.uk</header>
+            <div class="navItems">
+                <nav class="cl-effect-1">                
+                    <a href="index.html">Projects</a>
+                    <a href="blog.html">Blog</a>
+<!-- TODO
+                    
+                    <a href="about.html">About</a>
+-->
+
+                </nav>
+            </div>
+        </div>
+        
+        <aside>
+            <div>
+                <a href="https://github.com/tsasioglu">
+                    <img src="img/github_icon.png" class="asideIcon"/>
+                </a>
+            </div>                       
+             <div>
+                <a href="https://www.linkedin.com/profile/view?id=69264673">
+                    <img src="img/linkedin_icon.png" class="asideIcon"/>
+                </a>
+            </div>     
+             <div>
+                <a href="mailto:taran@sasioglu.co.uk">
+                    <img src="img/email_icon.png" class="asideIcon"/>
+                </a>
+            </div>
+        </aside>  
+        
+        <div id="content"> 
+            <article>
+                <h1>ArgumentException Best Practices</h1>
+                
+                <section class="padded">
+                The <span class="word-emphasis">ArgumentException</span> (and its derived types) are probably<sup><a href="#refs">[1]</a></sup> the most commonly thrown exceptions in .NET after Exception itself, but they’re often used incorrectly, and the MDSN guidelines are somewhat vague.
+                    
+                    <br /><br />
+There are three types of <span class="word-emphasis">ArgumentException</span> in .NET; the <span class="word-emphasis">ArgumentException</span> itself and its two derived types <span class="word-emphasis">ArgumentNullException</span> and <span class="word-emphasis">ArgumentOutOfRangeException</span>. Let’s explore.
+
+                </section>
+                
+                <h2>ArgumentNullException</h2>
+                 <section class="padded">
+                The <span class="word-emphasis">ArgumentNullException</span> is usually thrown right at the start of a method, as part of a precondition check. If possible, parameters should be checked in signature order to aid discoverability and debugging. 
+<br /><br />
+A less common use for the <span class="word-emphasis">ArgumentNullException</span> is to notify the caller when a method was just about to call into another method with a null argument, generated from a caller-provided parameter. The caveat of course being that you need to know somehow that it’s invalid to pass null to the inner method. But if you can guarantee this, you benefit from being able to throw earlier, and with a more meaningful message. 
+
+
+                </section>
+
+
+<br />
+                    
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Argument vs. Parameter</div>
+                        <div class="panel-body">
+                            The generally accepted convention which .NET follows<sup><a href="#refs">[2]</a></sup> is to call the things being passed into a method the arguments, and the things within a method parameters.
+                        </div>
+                    </div>                
+                
+                
+                <h2>ArgumentOutOfRangeException</h2>
+                 <section class="padded">
+               The <span class="word-emphasis">ArgumentOutOfRangeException</span> should be thrown whenever a parameter is not null, but still out of the range of acceptable values. A constructor that takes a string message should always be used, and include a description of the valid range of values.
+                     <br /><br />
+                     Like the <span class="word-emphasis">ArgumentNullException</span>, when calling the single string constructor the parameter name should be passed in, and the created exception will have the friendly message <code class="cs">“Specified argument was out of the range of valid values. Parameter name: foo”</code>.
+                </section>
+                
+                   <h2>ArgumentException</h2>
+                 <section class="padded">
+           <span class="word-emphasis">ArgumentException</span> is the concrete base class of the other two. It should only be used when one of the more specific types are not appropriate, which is usually when two or more arguments are not compatible with each other. 
+                     <br />
+                     <br />It should not be used with a single string parameter denoting a parameter name (e.g. <code class="cs">throw new ArgumentException(“foo”)</code>), as this violates the signature (<code class="cs">public ArgumentException(string message)</code>), by providing no message with details of the issue.
+
+
+                </section>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                
+                <a name="refs"></a>
+                <section class="padded">
+                    [1] At least according to GitHub: Exception has 4.3m usages, ArgumentException (all varieties) has 1.84m, InvalidOperationException has 460k.
+                    <br />
+                    [2] The Main method signature being the obvious exception. 
+                </section>
+
+                
+                
+                <br />
+                <br />
+                <br />
+                
+                    
+              
+         <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-63064775-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+                <script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+                
+                
+    </body>    
+</html>

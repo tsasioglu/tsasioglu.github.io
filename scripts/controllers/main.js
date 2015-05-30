@@ -61,6 +61,8 @@ angular.module("blogFeedApp")
     loadPosts("https://thingsishouldknowasafinanceworker.wordpress.com/feed/#", ["finance", "mini"]);  
 
     addManual("NLog (really) quick start", "23 Apr 2015", "http://sasioglu.co.uk/nunit.html", ["dev", "full"], "Why NLog? It’s powerful, actively developed, has decent documentation, a wide user base and supports Silverlight and Windows Phone. It might take an extra 5 minutes setting up the base config, but it’s worth it. 3 Step Setup 1. Install using NuGet 2. Add the following to your App.config inside the <configuration> element");
+      
+      addManual("ArgumentException Best Practices", "30 May 2015", "http://sasioglu.co.uk/argumentexception.html", ["dev", "full"], "The ArgumentException (and its derived types) are probably the most commonly thrown exceptions in .NET after Exception itself, but they’re often used incorrectly, and the MDSN guidelines are somewhat vague");
     
     $scope.searchFilter = function () {
 	    return function (post) {

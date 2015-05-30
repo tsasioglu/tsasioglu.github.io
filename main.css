@@ -122,3 +122,8 @@ article {
 .want-more {
   margin: 5px;
 }
+
+.word-emphasis {
+/*     font-style: italic;*/
+    color: #003399;
+}
