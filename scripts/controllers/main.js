@@ -14,8 +14,9 @@ angular.module("blogFeedApp")
   	$scope.search = {full : true, mini : true, dev : true, finance : true};
 
   	var loadPosts = function(url, tags) {
+		console.log("loading posts from " + url); 
   		XmlService.downloadXml(url).then(function(xml) {
-     
+		console.log("loaded posts from " + url);
 	    var replaceAll = function(string, search, replacement) {
 	    	return string.split(search).join(replacement);
 	    }
@@ -61,6 +62,7 @@ angular.module("blogFeedApp")
 		});
   	}
 
+	console.log("loading posts");
     loadPosts("https://sasioglu.co.uk/scripts/dev.xml", ["dev", "mini"]);
     loadPosts("https://sasioglu.co.uk/scripts/finance.xml", ["finance", "mini"]);  
 
