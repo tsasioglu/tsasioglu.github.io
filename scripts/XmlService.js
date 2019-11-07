@@ -7,7 +7,8 @@
 
             $.getJSON(url, function (data)
             {
-                var xml = $(data.results[0]);
+				console.log(data)
+                var xml = $(data);
                 deferred.resolve(xml);                
             });
 
