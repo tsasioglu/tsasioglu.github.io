@@ -21,7 +21,7 @@ angular.module("blogFeedApp")
 	    	return string.split(search).join(replacement);
 	    }
 
-	    var posts = xml.find('item').reverse();
+	    var posts = xml.find('item').get().reverse();
 		console.log("found " + posts.length + " items");
 
 	    _.each(posts, function(post) {
@@ -35,7 +35,7 @@ angular.module("blogFeedApp")
 			// else
 				// var end = description.indexOf("<img alt=\"\" border=\"0\" src=\"https://pixel.wp.com/b.gif?host=");
 						
-			var description = element.find("content:encoded").html();
+			var description = element.find("content\\:encoded").html();
 			console.log("desc:" + description);
 			var start = 11;
 			var summary = $("<div/>").html(description.substring(start, 280)).text();
