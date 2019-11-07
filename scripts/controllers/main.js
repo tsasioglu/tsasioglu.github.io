@@ -24,16 +24,18 @@ angular.module("blogFeedApp")
 
 	    _.each(posts, function(post) {
     		var element = $(post);
-			var description = element.find("description").html();
-			var start = 11;
-			var postCutoff = description.indexOf("&#8230;");
+			// var description = element.find("description").html();
+			// var start = 11;
+			// var postCutoff = description.indexOf("&#8230;");
 
-			if(postCutoff != -1)
-				var end = description.indexOf("&#8230;") - 1;
-			else
-				var end = description.indexOf("<img alt=\"\" border=\"0\" src=\"https://pixel.wp.com/b.gif?host=");
+			// if(postCutoff != -1)
+				// var end = description.indexOf("&#8230;") - 1;
+			// else
+				// var end = description.indexOf("<img alt=\"\" border=\"0\" src=\"https://pixel.wp.com/b.gif?host=");
 						
-			var summary = $("<div/>").html(description.substring(start, end)).text();
+			var description = element.find("content:encoded").html();
+			var start = 11;
+			var summary = $("<div/>").html(description.substring(start, 280)).text();
 
 			$scope.posts.push({
 				title: element.find("title").text(),
